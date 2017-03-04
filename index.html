@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Click and replace slider image</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Owl Stylesheets -->
+  <link rel="stylesheet" href="owlcarousel/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="owlcarousel/assets/owl.theme.default.min.css">
+  <script src="owlcarousel/owl.carousel.js"></script>
+
+</head>
+<body>
+
+<!-- Abre a section dizendo que não aparecerá para celulares -->
+<section id="slider" class="hidden-xs">
+
+  <!-- Div desponsável pela imagem padrão -->
+  <div class="default-image">
+    <!-- Imagem padrão (aparecerá com a abertura do site) -->
+    <img src="images/000000.png" class="img-responsive">
+  </div>
+
+  <!-- Div com os blocos -->
+  <div class="block">
+    <div class="col-md-12">
+
+      <!-- Owl carousel -->
+      <div class="owl-carousel owl-theme">
+          <div class="item"><img src="images/ababab.png" class="img-responsive"></div>
+          <div class="item"><img src="images/e66e66.png" class="img-responsive"></div>
+          <div class="item"><img src="images/b33b33.png" class="img-responsive"></div>
+          <div class="item"><img src="images/dddddd.png" class="img-responsive"></div>
+          <div class="item"><img src="images/c33c33.png" class="img-responsive"></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+</body>
+
+<script>
+// Detecta qual o tamanho da imagem (imagine que é uma 1920x400, em um monitor 1600, ela é responsiva, então ela não terá 400px de altura, o código se encarrega de descobrir qual a altura da imagem de acordo com o monitor)
+$($("section#slider").css('height', $(".default-image").height()));
+
+// Quando for clicado na imagem do bloco
+$("section#slider .block .owl-carousel .item img").click(function() {
+
+  // variavel selected é igual ao valor da SRC da imagem selecionada
+  var selected = $(this).attr('src');
+
+  // A partir de agora, a imagem padrão (linha 27) receberá o SRC da imagem selecionada
+  $("section#slider .default-image img").attr('src', selected);
+});
+  
+  // Propriedades do owl carousel
+  $('.owl-carousel').owlCarousel({
+      margin:10, // Margem entre as imagens
+      nav:false, // Navegação
+      responsive:{
+          0:{ // Quando o monitor tiver 0px de largura...
+              items:0 // Exiba 0 ítens
+          },
+          600:{ // Quando o monitor tiver 600px de lagura..
+              items:3 // Exiba 3 ítens
+          },
+          1000:{ // Quando o monitor tiver 1000px de lagura..
+              items:5 // Exiba 5 ítens
+          }
+      }
+  });
+</script>
+
+</html>
